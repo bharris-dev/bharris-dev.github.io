@@ -254,13 +254,13 @@ textarea {
 }
 [type="submit"]:hover { background:#b35252; }
 
-.icons{
+.fa{
 	color: #1dd2af;
 	padding: 20px;
 
 }
 
-.icons:hover{
+.fa:hover{
 	opacity: 0.7;
 }
 
@@ -482,12 +482,12 @@ footer{
 	}
 	[type="submit"]:hover { background:#b35252; }
 
-	.icons{
+	.fa{
 		color: #1dd2af;
 		padding: 20px;
 	}
 
-	.icons:hover{
+	.fa:hover{
 		opacity: 0.7;
 	}
 
