@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Brandon Harris: Friendly Neighbourhood Dev</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<div class="header">
+		<div class="wrapper">
+			<div class="typing-demo">
+				Brandon Harris
+			</div>
+		</div>
+	</div>
+	<div class="nav" id="nav">
+		<ul>
+			<li><a href="#about">About</a></li>
+			<li><a href="#education">Education</a></li>
+			<li><a href="#projects">Projects</a></li>
+			<li style="float:right"><a class="active" href="#contact">Contact</a></li>
+		</ul>
+		<div class="progress-container">
+			<div class="progress-bar" id="indicator"></div>
+		</div>
+	</div>
+	
+		
+	<div class="content">
+		<div class="box" id="about" style="margin-top: 2vh">
+			<h1><span class="fancy">About Me</span></h1>
+			<p>Hi, I'm Brandon, a BSc Computer Science graduate from Aberystwyth University. This page is a portfolio of sorts - it is where my projects can be downloaded from, in addition to where I can be contacted from.</p>
+		</div>
+		
+		<div class="box" id="education">
+			<h1><span class="fancy">Education</span></h1>
+			<h2>2:1 Bachelor's Degree in Computer Science at Aberystwyth Univeristy<button class="btn" onclick="displayText(this)">+</button></h2>
+			<div class="revealed-content" style="display: none">
+				<p>Experience and Skills gained:</p>
+				<ul>
+					<li>Game development pipeline as both an independent developer and leading a group project</li>
+					<li>Developed communication skills by working on assigned cooperative projects alongside other students</li>
+					<li>Confidence in Object-oriented Programming</li>
+					<li>Programming languages worked with: Unity C#; Java; HTML/CSS/JavaScript; Kotlin; C & Arduino C.</li>
+					<li>Understanding and effective application of advanced mathematical and computational concepts</li>
+				</ul>
+			</div>
+			<h2>3 A Levels (including in Computer Science and Mathematics)<button class="btn" onclick="displayText(this)">+</button></h2>
+			<div class="revealed-content" style="display: none">
+				<p>Experience and Skills gained:</p>
+				<ul>
+					<li>Python: PyGame and simple Tkinter</li>
+					<li>HTML and CSS: Simple static webpages</li>
+					<li>Working with simple sorting algorithms and graphs</li>
+					<li>More advanced programming knowledge (class inheritence and polymorphism; clear and concise commenting; clear naming conventions)</li>
+				</ul>
+			</div>
+			<h2>9 GCSEs (including in Computer Science, Mathematics and Physics)<button class="btn" onclick="displayText(this)">+</button></h2>
+			<div class="revealed-content" style="display: none">
+				<p>Experience and Skills gained:</p>
+				<ul>
+					<li>Understanding of basic programming fundamentals (loops; methods; conditionals)</li>
+					<li>Breaking down assigned problems into smaller, more managable tasks</li>
+					<li>Developing and applying solutions to assigned problems</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="box" id="projects">
+			<h1><span class="fancy">Projects</span></h2></h1>
+			<h2>Untitled Rougelite Game<button class="btn" onclick="displayText(this)">+</button></h2>
+			<div class="revealed-content" style="display: none">
+				<p><a href="./">Project currently in the works. Link will be updated when available.</a></p>
+			</div>
+		</div>
+		
+		<div class="box" id="contact">
+			<h1><span class="fancy">Contact</span></h1>
+				<form action="https://formspree.io/f/mldpnpkn" method="POST">     
+  					<input name="name" type="text" class="form-input" required placeholder="Name" />   
+  					<input name="email" type="text" class="form-input" required placeholder="Email" />
+  					<textarea name="message" class="form-input" required placeholder="Message"></textarea>
+  					<input type="submit" value="SEND"/>
+				</form>
+		</div>
+	<p class="modded" id="last_Mod"></p>
+	
+	
+	<!-- Scripts Here -->
+	
+	<!-- Stickies navigation bar and scroll indicator to top when scrolled down -->
+	<script>
+		window.onscroll = function() {myFunction()};
+		
+		var navbar = document.getElementById("nav");
+		var sticky = navbar.offsetTop;
+		
+		function myFunction() {
+		
+			var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+			var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+			var scrolled = (winScroll / height) * 100;
+			document.getElementById("indicator").style.width = scrolled + "%";
+			
+			if (window.pageYOffset >= sticky) {
+				navbar.classList.add("sticky");
+				
+			} else {
+				navbar.classList.remove("sticky");
+			}
+		}
+	</script>
+	
+	<!-- Date Page Last Modified -->
+	<script>
+		const date = new Date(document.lastModified);
+		document.getElementById("last_Mod").innerHTML = "Last modified: " + date.toLocaleString();
+	</script>
+	
+	<!-- Scroll Indicator -->
+
+	
+	<!-- Click button to reveal text -->
+	<script>
+		function displayText(button) {
+		const content = button.parentElement.nextElementSibling;
+		const isHidden = content.style.display !== 'block';
+		// If isHidden true, reveal block of text : If isHidden false, set it as none
+		content.style.display = isHidden ? 'block' : 'none';
+		// If isHidden true, button + : If isHidden false, button -
+		button.textContent = isHidden ? '-' : '+';
+		}
+	</script>
+</body>
+
+</html>
