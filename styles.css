@@ -254,31 +254,28 @@ textarea {
 }
 [type="submit"]:hover { background:#b35252; }
 
-.fa{
-	color: #1dd2af;
-	padding: 20px;
-	text-decoration: none;
-	font-size: 100px;
-}
-
-.fa:hover{
-	opacity: 0.7;
-}
-
-.box a.fa{
-	font-size: 3.15em;
-}
-
 footer{
 	text-align: center;
 	margin: 0.15vw;
 	margin-top: -0.15vw;
 	background-color: #333;
 	overflow: hidden;
+	font-size: 1.25em;
+	color: white;
 }
 
-footer .box{
-	border-bottom: none;
+.fa{
+	color: #1dd2af;
+	padding: 20px;
+	text-decoration: none;
+}
+
+.fa:hover{
+	opacity: 0.7;
+}
+
+footer a.fa{
+	font-size: 2em;
 }
 
 .box + footer{
@@ -491,6 +488,16 @@ footer .box{
 	}
 	[type="submit"]:hover { background:#b35252; }
 
+	footer{
+		text-align: center;
+		margin: 0.15vw;
+		margin-top: -0.15vw;
+		background-color: #333;
+		overflow: hidden;
+		font-size: 1.25em;
+		color: white;
+	}
+
 	.fa{
 		color: #1dd2af;
 		padding: 20px;
@@ -501,20 +508,8 @@ footer .box{
 		opacity: 0.7;
 	}
 
-	.box a.fa{
-		font-size: 3.15em;
-	}
-
-	footer{
-		text-align: center;
-		margin: 0.15vw;
-		margin-top: -0.15vw;
-		background-color: #333;
-		overflow: hidden;
-	}
-
-	footer .box{
-		border-bottom: none;
+	footer a.fa{
+		font-size: 2em;
 	}
 
 	.box + footer{
