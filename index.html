@@ -125,12 +125,12 @@
 	<!-- Click button to reveal text -->
 	<script>
 		function displayText(button) {
-		const content = button.parentElement.nextElementSibling;
-		const isHidden = content.style.display !== 'block';
-		// If isHidden true, reveal block of text : If isHidden false, set it as none
-		content.style.display = isHidden ? 'block' : 'none';
-		// If isHidden true, button + : If isHidden false, button -
-		button.textContent = isHidden ? '-' : '+';
+			const content = button.parentElement.nextElementSibling;
+			const isHidden = content.style.display !== 'block';
+			// If isHidden true, reveal block of text : If isHidden false, set it as none
+			content.style.display = isHidden ? 'block' : 'none';
+			// If isHidden true, button + : If isHidden false, button -
+			button.textContent = isHidden ? '-' : '+';
 		}
 	</script>
 </body>
