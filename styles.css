@@ -257,11 +257,16 @@ textarea {
 .fa{
 	color: #1dd2af;
 	padding: 20px;
-
+	text-decoration: none;
+	font-size: 100px;
 }
 
 .fa:hover{
 	opacity: 0.7;
+}
+
+.box a.fa{
+	font-size: 3.15em;
 }
 
 footer{
@@ -485,10 +490,15 @@ footer{
 	.fa{
 		color: #1dd2af;
 		padding: 20px;
+		text-decoration: none;
 	}
 
 	.fa:hover{
 		opacity: 0.7;
+	}
+
+	.box a.fa{
+		font-size: 3.15em;
 	}
 
 	footer{
