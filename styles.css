@@ -277,6 +277,10 @@ footer{
 	overflow: hidden;
 }
 
+footer .box{
+	border-bottom: none;
+}
+
 .box + footer{
 	margin-top: 1vw;
 }
@@ -507,6 +511,10 @@ footer{
 		margin-top: -0.15vw;
 		background-color: #333;
 		overflow: hidden;
+	}
+
+	footer .box{
+		border-bottom: none;
 	}
 
 	.box + footer{
