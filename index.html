@@ -96,19 +96,19 @@
 			</div>
 		</footer>
 		
-		<!-- <p class="modded" id="last_Mod"></p> -->
+		<p class="modded" id="last_Mod"></p>
 	
 	
 	<!-- Scripts Here -->
 	
 	<!-- Stickies navigation bar and scroll indicator to top when scrolled down -->
 	<script>
-		window.onscroll = function() {myFunction()};
+		window.onscroll = function() {stickNav()};
 		
 		var navbar = document.getElementById("nav");
 		var sticky = navbar.offsetTop;
 		
-		function myFunction() {
+		function stickNav() {
 		
 			var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
 			var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
