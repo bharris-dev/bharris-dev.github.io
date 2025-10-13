@@ -262,6 +262,7 @@ footer{
 	overflow: hidden;
 	font-size: 1.25em;
 	color: white;
+	text-align: center;
 }
 
 .fa{
@@ -276,6 +277,18 @@ footer{
 
 footer a.fa{
 	font-size: 2em;
+}
+
+footer ul {
+	display: flex;
+	justify-content: center;
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+}
+
+footer li{
+	display: inline;
 }
 
 .box + footer{
@@ -496,6 +509,7 @@ footer a.fa{
 		overflow: hidden;
 		font-size: 1.25em;
 		color: white;
+		text-align: center;
 	}
 
 	.fa{
@@ -510,6 +524,18 @@ footer a.fa{
 
 	footer a.fa{
 		font-size: 2em;
+	}
+
+	footer ul {
+ 		display: flex;
+		justify-content: center;
+		list-style: none;
+		margin: 0 auto;
+		padding: 0;
+	}
+
+	footer li{
+		display: inline;
 	}
 
 	.box + footer{
