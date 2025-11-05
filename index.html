@@ -39,7 +39,7 @@
 		
 		<div class="box" id="education">
 			<h1><span class="fancy">Education</span></h1>
-			<h2>2:1 Bachelor's Degree in Computer Science at Aberystwyth University<button class="btn" onclick="displayText(this)">+</button></h2>
+			<h2 data-id="bachelors">2:1 Bachelor's Degree in Computer Science at Aberystwyth University<button class="btn" onclick="displayText(this)">+</button></h2>
 			<div class="revealed-content" style="display: none">
 				<p>Experience and Skills gained:</p>
 				<ul>
@@ -50,7 +50,7 @@
 					<li>Understanding and effective application of advanced mathematical and computational concepts</li>
 				</ul>
 			</div>
-			<h2>3 A Levels (including in Computer Science and Mathematics)<button class="btn" onclick="displayText(this)">+</button></h2>
+			<h2 data-id="alevels">3 A Levels (including in Computer Science and Mathematics)<button class="btn" onclick="displayText(this)">+</button></h2>
 			<div class="revealed-content" style="display: none">
 				<p>Experience and Skills gained:</p>
 				<ul>
@@ -60,7 +60,7 @@
 					<li>More advanced programming knowledge (class inheritence and polymorphism; clear and concise commenting; clear naming conventions)</li>
 				</ul>
 			</div>
-			<h2>9 GCSEs (including in Computer Science, Mathematics and Physics)<button class="btn" onclick="displayText(this)">+</button></h2>
+			<h2 data-id="gcses">9 GCSEs (including in Computer Science, Mathematics and Physics)<button class="btn" onclick="displayText(this)">+</button></h2>
 			<div class="revealed-content" style="display: none">
 				<p>Experience and Skills gained:</p>
 				<ul>
@@ -73,7 +73,7 @@
 
 		<div class="box" id="projects">
 			<h1><span class="fancy">Projects</span></h2></h1>
-			<h2>Rougelite Game (WIP)<button class="btn" onclick="displayText(this)">+</button></h2>
+			<h2 data-id="game1">Rougelite Game (WIP)<button class="btn" onclick="displayText(this)">+</button></h2>
 			<div class="revealed-content" style="display: none">
 				<p><a href="./">Project currently in the works. Link will be updated when available.</a></p>
 			</div>
@@ -141,11 +141,33 @@
 		function displayText(button) {
 			const content = button.parentElement.nextElementSibling;
 			const isHidden = content.style.display !== 'block';
+			const sectionId = button.parentElement.dataset.id;
+
 			// If isHidden true, reveal block of text : If isHidden false, set it as none
 			content.style.display = isHidden ? 'block' : 'none';
 			// If isHidden true, button + : If isHidden false, button -
 			button.textContent = isHidden ? '-' : '+';
+
+			button.classList.toggle('active', isHidden);
+
+			if (sectionId){
+				localStorage.setItem(sectionId, isHidden ? 'expanded' : 'collapsed');
+			}
 		}
+
+		window.addEventListener('DOMContentLoaded', () => {
+			document.querySelectorAll('.btn').forEach(button => {
+				const sectionId = button.parentElement.dataset.id;
+				const savedState = sectionId && localStorage.getItem(sectionId);
+				const content = button.parentElement.nextElementSibling;
+
+				if (savedState === 'expanded') {
+				content.style.display = 'block';
+				button.textContent = '-';
+				button.classList.add('active');
+				}
+			});
+		});
 	</script>
 </body>
 
