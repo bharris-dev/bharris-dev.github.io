@@ -151,14 +151,14 @@
 			button.classList.toggle('active', isHidden);
 
 			if (sectionId){
-				localStorage.setItem(sectionId, isHidden ? 'expanded' : 'collapsed');
+				sessionStorage.setItem(sectionId, isHidden ? 'expanded' : 'collapsed');
 			}
 		}
 
 		window.addEventListener('DOMContentLoaded', () => {
 			document.querySelectorAll('.btn').forEach(button => {
 				const sectionId = button.parentElement.dataset.id;
-				const savedState = sectionId && localStorage.getItem(sectionId);
+				const savedState = sectionId && sessionStorage.getItem(sectionId);
 				const content = button.parentElement.nextElementSibling;
 
 				if (savedState === 'expanded') {
