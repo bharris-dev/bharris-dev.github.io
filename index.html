@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Brandon Harris: Friendly Neighbourhood Dev</title>
 	<link rel="stylesheet" href="styles.css">
@@ -29,11 +28,10 @@
 		</div>
 	</div>
 	
-		
 	<div class="content">
 		<div class="box" id="about" style="margin-top: 2vh">
 			<h1><span class="fancy">About Me</span></h1>
-			<p>Hi, I'm Brandon, a passionate game developer and frontend web developer based in the United Kingdom. Glad to see you've found my portfolio - it's where <a href="#projects">my projects</a> can be downloaded from, in addition to where I can be <a href="#contact">contacted</a> from.</p>
+			<p>Hi, I'm Brandon, a passionate game developer and frontend web designer based in the United Kingdom. Glad to see you've found my portfolio - it's where <a href="#projects">my projects</a> can be downloaded from, in addition to where I can be <a href="#contact">contacted</a> from.</p>
 			<p>I graduated with a Bachelors of Science in Computer Science from Aberystwyth University in 2025.</p>
 		</div>
 		
@@ -72,13 +70,11 @@
 		</div>
 
 		<div class="box" id="projects">
-			<h1><span class="fancy">Projects</span></h2></h1>
-			<h2 data-id="game1">Rougelite Game (WIP)<button class="btn" onclick="displayText(this)">+</button></h2>
-			<div class="revealed-content" style="display: none">
-				<p><a href="./">Project currently in the works. Link will be updated when available.</a></p>
-			</div>
+			<h1><span class="fancy">Projects</span></h1>
+			<div class="project-list"></div>
+			<button id="reveal-btn" class="btn">Show More Projects</button>
 		</div>
-		
+
 		<div class="box" id="contact">
 			<h1><span class="fancy">Contact</span></h1>
 				<form action="https://formspree.io/f/mldpnpkn" method="POST">     
@@ -97,10 +93,8 @@
 				</ul>
 			</div>
 			<p>© 2025 Brandon Harris</p>
-		</footer>
-		
-		<p class="modded" id="last_Mod"></p>
-	
+		</footer>	
+		<!--<p class="modded" id="last_Mod"></p>-->
 	
 	<!-- Scripts Here -->
 	
@@ -127,14 +121,12 @@
 		}
 	</script>
 	
-	<!-- Date Page Last Modified -->
+	<!-- Date Page Last Modified 
 	<script>
 		const date = new Date(document.lastModified);
 		document.getElementById("last_Mod").innerHTML = "Last modified: " + date.toLocaleString();
 	</script>
-	
-	<!-- Scroll Indicator -->
-
+	-->
 	
 	<!-- Click button to reveal text -->
 	<script>
@@ -162,12 +154,135 @@
 				const content = button.parentElement.nextElementSibling;
 
 				if (savedState === 'expanded') {
-				content.style.display = 'block';
-				button.textContent = '-';
-				button.classList.add('active');
+					content.style.display = 'block';
+					button.textContent = '-';
+					button.classList.add('active');
 				}
 			});
 		});
+	</script>
+
+	<script>
+		const projects = [
+		{
+			id: "rougelite",
+			title: "Rougelite Game (WIP)",
+			shortDesc: "Card-based casino shoot-em-up roguelite made in Godot Engine.",
+			longDesc: `Tackle enemies both in the battlefield and casino in this wild casino shoot-em-up roguelite. Unlock and deploy gadgets to get an edge over the house, and new weapons to stay alive against the horde outside.`,
+			tech: ["Godot (gdscript)", "Mechanics", "Physics"],
+			link: "",
+			images: ["images/roguelite/camera.png"]
+		},
+		{
+			id: "portfolio",
+			title: "Portfolio Website",
+			shortDesc: "Personal portfolio showcasing my work and contact info.",
+			longDesc: `This website was coded using HTML, CSS, and JavaScript.`,
+			tech: ["HTML", "CSS", "JavaScript"],
+			link: "#",
+			images: ["images/website/homepage.png"]
+		},
+		];
+
+		const projectContainer = document.querySelector(".project-list");
+		const revealBtn = document.getElementById("reveal-btn");
+
+		// Create project cards
+		projects.forEach(p => {
+			const hasImage = p.images && p.images.length > 0;
+			const bgStyle = hasImage ? `background-image: url('${p.images[0]}');` : "";
+			
+			const projectLinkHTML = p.link ? `<p><a href="${p.link}" target="_blank">&#8594; View Project</a></p>` : "";
+
+			const projectImagesHTML = p.images 
+				? `<div class="modal-images">
+					${p.images.map(src => `<img src="${src}" alt="${p.title} screenshot">`).join("")}
+				</div>`
+				: "";
+
+			const cardHTML = `
+				<div class="project-card" id="${p.id}" style="${bgStyle}" onclick="openModal('${p.id}')">
+					<p>${p.title}</p>
+				</div>
+				<div id="${p.id}-modal" class="modal">
+					<div class="modal-content">
+						<span class="close" onclick="closeModal('${p.id}')">&times;</span>
+						<h2>${p.title}</h2>
+						<p>${p.longDesc}</p>
+						<ul>${p.tech.map(t => `<li>${t}</li>`).join("")}</ul>
+						${projectLinkHTML}
+						${projectImagesHTML}
+					</div>
+				</div>
+			`;
+			projectContainer.insertAdjacentHTML("beforeend", cardHTML);
+		});
+
+		const projectCards = document.querySelectorAll(".project-card");
+
+		// * Modal functions *
+		function openModal(id) { document.getElementById(`${id}-modal`).style.display = "block"; }
+		function closeModal(id) { document.getElementById(`${id}-modal`).style.display = "none"; }
+		window.onclick = function(event) {
+			document.querySelectorAll(".modal").forEach(modal => {
+				if (event.target === modal){
+					modal.style.display = "none";
+				} 
+			});
+		};
+
+		// Show/hide extra rows
+		function updateHiddenCards() {
+			const containerWidth = projectContainer.offsetWidth;
+			const cardWidth = projectCards[0].offsetWidth + 16;
+			const cardsPerRow = Math.floor(containerWidth / cardWidth);
+
+			let hasExtraRows = false;
+
+			projectCards.forEach((card, index) => {
+				if (index >= cardsPerRow) {
+					card.classList.add("hidden");
+					hasExtraRows = true;
+				} else {
+					card.classList.remove("hidden");
+				}
+			});
+
+			// Show/hide reveal button based on extra rows
+			revealBtn.style.display = hasExtraRows ? "block" : "none";
+		}
+
+
+		updateHiddenCards();
+		window.addEventListener("resize", updateHiddenCards);
+
+
+		revealBtn.addEventListener("click", () => {
+		const hiddenCards = Array.from(projectCards).filter(c => c.classList.contains("hidden"));
+
+		if (hiddenCards.length > 0) {
+			hiddenCards.forEach((card, i) => {
+				setTimeout(() => card.classList.remove("hidden"), i * 100);
+			});
+			revealBtn.textContent = "Show Less Projects";
+		} else {
+			const extraCards = Array.from(projectCards).filter(c => !c.classList.contains("hidden") && !isFirstRow(c));
+			extraCards.forEach((card, i) => {
+				setTimeout(() => card.classList.add("hidden"), i * 100);
+			});
+			revealBtn.textContent = "Show More Projects";
+		}
+		});
+
+		// Detect first row of project section
+		function isFirstRow(card) {
+			const containerWidth = projectContainer.offsetWidth;
+			const cardWidth = card.offsetWidth + 16;
+			const cardsPerRow = Math.floor(containerWidth / cardWidth);
+			const index = Array.from(projectCards).indexOf(card);
+			return index < cardsPerRow;
+		}
+
 	</script>
 </body>
 
