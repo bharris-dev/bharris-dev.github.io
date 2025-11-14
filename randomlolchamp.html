@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random LoL Champion Picker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen text-center p-4">
+
+    <h1 class="text-4xl font-bold mb-8">Random LoL Champion Picker</h1>
+
+    <p id="champion-name" class="text-2xl mb-4">Loading champions...</p>
+    <p id="champion-classes" class="text-base mb-4">Loading champion classes...</p>
+    <img id="champion-image" class="hidden w-48 rounded-xl shadow-lg mb-6 mx-auto" alt="Champion image">
+
+    <button id="pick-button" disabled class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl text-lg font-semibold transition">Pick Random Champion</button>
+
+    <footer class="mt-10 text-gray-400 text-sm">
+        <p>Data and images provided by Riot Games. Riot Games, League of Legends, and all related logos are trademarks or registered trademarks of Riot Games, Inc.</p>
+    </footer>
+
+    <script>
+        const champName = document.getElementById("champion-name");
+        const champClasses = document.getElementById("champion-classes");
+        const champImg = document.getElementById("champion-image");
+        const pickButton = document.getElementById("pick-button");
+        let champions = [];
+
+        async function loadChampions() {
+            try {
+                // Get the latest Data Dragon version
+                const versionsFile = await fetch("https://ddragon.leagueoflegends.com/api/versions.json");
+                const versions = await versionsFile.json();
+                const latest = versions[0];
+
+                // Get champion data for that version
+                const champFile = await fetch(`https://ddragon.leagueoflegends.com/cdn/${latest}/data/en_US/champion.json`);
+                const champData = await champFile.json();
+                champions = Object.values(champData.data);
+
+                champName.textContent = "Click the button to pick";
+                champClasses.textContent = "";
+                pickButton.disabled = false;
+            } catch (err) {
+                champName.textContent = "Error loading champions";
+                console.error(err);
+            }
+        }
+
+        function pickRandomChampion() {
+            if (!champions.length){ 
+                return
+            };
+
+            // Picks random champion
+            const random = champions[Math.floor(Math.random() * champions.length)];
+            champName.textContent = random.name;
+
+            // Gets champion tags/classes
+            champClasses.textContent = random.tags;
+            champClasses.textContent = champClasses.textContent.replace(/,/g, ", ");
+
+            // Gets champion splash art
+            champImg.src = `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${random.id}_0.jpg`;
+            champImg.alt = random.name;
+            champImg.classList.remove("hidden");
+        }
+
+        pickButton.addEventListener("click", pickRandomChampion);
+        loadChampions();
+    </script>
+</body>
+</html>
