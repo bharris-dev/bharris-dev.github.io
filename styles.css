@@ -67,11 +67,9 @@ html, body{
 	z-index: 1;
 }
 
-
 .sticky {
 	position: fixed;
-	width:99.1%;
-	margin-right:0.1vw;
+	width:100%;
 	top: 0;
 	transition:0.5s;
 	box-shadow: 0px 0px 20px black;
@@ -131,6 +129,27 @@ html, body{
 	overflow: hidden;
 	border-bottom: 2px solid #1abc9c;
 	color: white;
+}
+
+.info-grid {
+  	display: grid;
+  	grid-template-columns: 1fr 1fr; /* two equal columns */
+  	margin-left: 4.5vw;
+	margin-right: 4.5vw;
+}
+
+.info-grid .box{
+	margin-left: 0.5vw;
+	margin-right: 0.5vw;
+	text-align: center;
+}
+
+.info-grid .box ul li {         /* make li a flex container */
+    gap: 0.5em;              /* space between bullet and text */
+}
+
+.info-grid + .box{
+	margin-top: 1vw;
 }
 
 .box h1 {
@@ -472,17 +491,16 @@ body.modal-open {
 	}
 
 	.nav{
+		/*margin-top: 0.15vh;   - Idk why this is here but won't delete incase.*/
 		background-color: #333;
 		overflow: hidden;
-		font-size: 1em;
+		font-size: 2em;
 		z-index: 1;
 	}
 
-
 	.sticky {
-		position: absolute;
-		width:99%;
-		margin-right:0.1vw;
+		position: fixed;
+		width:100%;
 		top: 0;
 		transition:0.5s;
 		box-shadow: 0px 0px 20px black;
