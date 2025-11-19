@@ -30,13 +30,14 @@
 	
 	<div class="content">
 		<div class="info-grid">
-			<div class="box" id="about" style="margin-top: 2vh">
+			<div class="sub-box base-box" id="about">
 				<h1><span class="fancy">About Me</span></h1>
-				<p>Hi, I'm Brandon, a passionate game developer and frontend web designer based in the United Kingdom. Glad to see you've found my portfolio - it's where <a href="#projects">my projects</a> can be downloaded from, in addition to where I can be <a href="#contact">contacted</a> from.</p>
-				<p>I graduated with a Bachelors of Science in Computer Science from Aberystwyth University in 2025.</p>
+				<p>Hi, I'm Brandon, a highly-motivated, detail-oriented, and passionate game and frontend web developer based in the United Kingdom. Glad to see you've found my portfolio - it's where <a href="#projects">my projects</a> can be downloaded from, in addition to where I can be <a href="#contact">contacted</a> from.</p>
+				<p>I graduated with a Bachelors of Science in Computer Science from Aberystwyth University in 2025, bringing along with me a strong foundation in problem-solving and frontend systems. </p>
+				<p>I am confident in design, programming and providing solutions to customer needs; I am an experienced in Unity C#, Godot Engine gdscript, JavaScript/CSS/HTML, Python and Java; Strong communication, teamwork and leadership skills help me work well as part of a team for group projects.</p>
 			</div>
 			
-			<div class="box" id="education">
+			<div class="sub-box base-box" id="education">
 				<h1><span class="fancy">Education</span></h1>
 				<h2 data-id="bachelors">2:1 Bachelor's Degree in Computer Science at Aberystwyth University<button class="btn" onclick="displayText(this)">+</button></h2>
 				<div class="revealed-content" style="display: none">
@@ -71,13 +72,13 @@
 			</div>
 		</div>
 
-		<div class="box" id="projects">
+		<div class="box base-box" id="projects">
 			<h1><span class="fancy">Projects</span></h1>
 			<div class="project-list"></div>
 			<button id="reveal-btn" class="btn">Show More Projects</button>
 		</div>
 
-		<div class="box" id="contact">
+		<div class="box base-box" id="contact">
 			<h1><span class="fancy">Contact</span></h1>
 				<form action="https://formspree.io/f/mldpnpkn" method="POST">     
   					<input name="name" type="text" class="form-input" required placeholder="Name" />   
@@ -167,7 +168,7 @@
 	<script>
 		const projects = [
 		{
-			id: "rougelite",
+			id: "roguelite",
 			title: "Rougelite Game (WIP)",
 			shortDesc: "Card-based casino shoot-em-up roguelite made in Godot Engine.",
 			longDesc: `Tackle enemies both in the battlefield and casino in this wild casino shoot-em-up roguelite. Unlock and deploy gadgets to get an edge over the house, and new weapons to stay alive against the horde outside.`,
