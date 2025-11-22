@@ -5,25 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random LoL Champion Picker</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen text-center p-4">
 
-    <h1 class="text-4xl font-bold mb-8">Random LoL Champion Picker</h1>
+    <h1 class="text-4xl font-bold mb-8 underline">Random League of Legends Champion Picker</h1>
+
+    <div class="flex flex-wrap justify-center gap-3 mb-6">
+        <label class="text-lg font-medium py-2">Filter by Champion Class:</label>
+            <select id="role-filter" class="bg-gray-600 text-white px-3 py-2 rounded-lg">
+                <option value="all">All</option>
+                <option value="Assassin">Assassin</option>
+                <option value="Fighter">Fighter</option>
+                <option value="Mage">Mage</option>
+                <option value="Marksman">Marksman</option>
+                <option value="Support">Support</option>
+                <option value="Tank">Tank</option>
+        </select>
+    </div>
 
     <p id="champion-name" class="text-2xl mb-4">Loading champions...</p>
     <p id="champion-classes" class="text-base mb-4">Loading champion classes...</p>
     <img id="champion-image" class="hidden w-48 rounded-xl shadow-lg mb-6 mx-auto" alt="Champion image">
 
-    <button id="pick-button" disabled class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl text-lg font-semibold transition">Pick Random Champion</button>
+    <button id="pick-button" disabled class="bg-green-700 hover:bg-green-500 px-6 py-3 rounded-xl text-lg font-semibold transition">Pick Random Champion</button>
 
     <footer class="mt-10 text-gray-400 text-sm">
         <p>Data and images provided by Riot Games. Riot Games, League of Legends, and all related logos are trademarks or registered trademarks of Riot Games, Inc.</p>
+        <ul class="flex justify-center list-none text-green-400">
+            <li><p class="p-2 text-base">Connect with me:</p></li>
+            <li><a href="https://bharris-dev.github.io/" class="fa fa-github p-2 text-base hover:text-green-200"></a></li>
+			<li><a href="https://www.linkedin.com/in/brandon-harris-808aab36b/" class="fa fa-linkedin p-2 text-base hover:text-green-200"></a></li>
+		</ul>
     </footer>
 
     <script>
         const champName = document.getElementById("champion-name");
         const champClasses = document.getElementById("champion-classes");
         const champImg = document.getElementById("champion-image");
+        const filterByClass = document.getElementById("class-filter");
         const pickButton = document.getElementById("pick-button");
         let champions = [];
 
@@ -49,12 +69,19 @@
         }
 
         function pickRandomChampion() {
-            if (!champions.length){ 
+            const selectedClass = filterByClass;
+            let filteredChamps = champions;
+
+            if (selectedClass ==! "all"){
+                filteredChamps.filter(c => c.tags.includes(selectedClass));
+            }
+
+            if (!filteredChamps.length){
                 return
-            };
+            }
 
             // Picks random champion
-            const random = champions[Math.floor(Math.random() * champions.length)];
+            const random = filteredChamps[Math.floor(Math.random() * filteredChamps.length)];
             champName.textContent = random.name;
 
             // Gets champion tags/classes
