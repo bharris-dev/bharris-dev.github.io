@@ -79,6 +79,11 @@
 			<button id="reveal-btn" class="btn">Show More Projects</button>
 		</div>
 
+		<div class="filter-wrapper">
+			<button id="filterToggle" class="filter-btn">Filter ▾</button>
+			<div id="filter-menu" class="filter-menu"></div>
+		</div>
+
 		<div class="box base-box" id="contact">
 			<h1><span class="fancy">Contact</span></h1>
 				<form action="https://formspree.io/f/mldpnpkn" method="POST">     
@@ -164,6 +169,22 @@
 				}
 			});
 		});
+	</script>
+
+	<script>
+		function buildTechFilter() {
+			const menu = document.getElementById("filter-menu");
+
+			const techCount = {};
+			projects.forEach(p => {p.tech.forEach(t => {techCount[t] = (techCount[t] || 0) + 1;});});
+
+			menu.innerHTML = Object.keys(techCount).sort().map(t => `
+				<label>
+					<input type="checkbox" value="${t}">
+					${t} (${techCount[t]})
+				</label>
+			`).join("");
+		}
 	</script>
 
 	<script>
@@ -296,6 +317,38 @@
 			return index < cardsPerRow;
 		}
 
+		buildTechFilter();
+	</script>
+
+	<script>
+		document.getElementById("filterToggle").addEventListener("click", () => {
+			const menu = document.getElementById("filter-menu");
+			menu.classList.toggle("open");
+		});
+
+		const filterMenu = document.getElementById("filter-menu");
+
+		// Refilter projects on checkbox change
+		filterMenu.addEventListener("change", applyFilters);
+
+		function applyFilters() {
+			const selected = Array.from(filterMenu.querySelectorAll("input:checked")).map(i => i.value);
+
+			if (selected.length === 0) {
+				projectCards.forEach(c => (c.style.display = "flex"));
+				updateHiddenCards();
+				return;
+			}
+
+			projects.forEach((p, i) => {
+				const match = selected.every(sel => p.tech.includes(sel));
+				projectCards[i].style.display = match ? "flex" : "none";
+			});
+
+			updateHiddenCards();
+		}
+
+		window.addEventListener("DOMContentLoaded", buildTechFilter);
 	</script>
 </body>
 

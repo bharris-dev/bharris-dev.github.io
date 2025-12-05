@@ -292,6 +292,11 @@ body.modal-open { overflow: hidden; }
 .modal-images img:hover { transform: scale(1.05); }
 
 /* Projects */
+
+#projects {
+    position: relative;
+}
+
 .project-list {
   display: flex;
   flex-wrap: wrap;
@@ -429,6 +434,122 @@ footer li{
     margin-top: 1vw;
 }
 
+/* Filter wrapper sits above the box */
+.filter-wrapper {
+    position: relative; /* so dropdown is positioned relative to button */
+    margin-left: 5vw;   /* aligns with box margins */
+    margin-right: 5vw;
+    margin-bottom: 1em; /* spacing above the box */
+    z-index: 200;       /* floats above everything */
+}
+
+/* Filter Toggle Button */
+.filter-btn {
+    padding: 0.5em 1em;
+    border: 1px solid #1abc9c;
+    border-radius: 0.5em;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    transition: background .2s, color .2s;
+}
+
+.filter-btn:hover {
+    background: #1abc9c;
+    color: black;
+}
+
+/* Dropdown Menu */
+.filter-wrapper {
+    position: relative;   /* relative positioning for the dropdown */
+    display: flex;
+    justify-content: flex-end; /* aligns button to the right */
+    margin-left: 5vw;     /* same horizontal margin as box */
+    margin-right: 5vw;
+    margin-bottom: 1em;   /* spacing above box */
+    width: calc(100% - 10vw); /* matches box width */
+    z-index: 200;
+}
+
+/* Filter button */
+.filter-btn {
+    padding: 0.5em 1em;
+    border: 1px solid #1abc9c;
+    border-radius: 0.5em;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    transition: background .2s, color .2s;
+}
+
+.filter-btn:hover {
+    background: #1abc9c;
+    color: black;
+}
+
+/* Dropdown Menu */
+.filter-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+
+    background: #333;
+    border: 1px solid #1abc9c;
+    border-radius: 0.75em;
+    padding: 0.75em;
+
+    min-width: 12rem;
+    max-width: min(90vw, 26rem);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(7rem, 40%), 1fr));
+    gap: 0.5em;
+
+    box-shadow: 0 4px 22px rgba(0,0,0,0.35);
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity .18s ease, transform .18s ease;
+
+    z-index: 999;
+}
+
+.filter-menu.open {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+/* Labels inside dropdown */
+.filter-menu label {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+
+    background: #444;
+    padding: 0.5em 0.6em;
+    border-radius: 0.5em;
+    cursor: pointer;
+
+    font-size: clamp(0.8rem, 1vw, 0.95rem);
+    color: white;
+    user-select: none;
+    transition: background .15s ease;
+}
+
+.filter-menu label:hover {
+    background: #555;
+}
+
+.filter-menu input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    accent-color: #1abc9c;
+}
+
 @media only screen and (max-width: 1000px) {
 
     .typing-demo {
@@ -500,4 +621,26 @@ footer li{
 	.box + footer{
 		margin-top: 3vw;
 	}
+
+    .filter-wrapper {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .filter-btn {
+        font-size: clamp(0.7rem, 2vw, 0.9rem);
+        padding: 0.4em 0.8em;
+    }
+
+    .filter-menu {
+        min-width: 10rem;
+        grid-template-columns: repeat(auto-fill, minmax(min(6rem, 45%), 1fr));
+        padding: 0.5em;
+    }
+
+    .filter-menu label {
+        font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+        padding: 0.4em 0.5em;
+    }
 }
