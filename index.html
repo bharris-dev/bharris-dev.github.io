@@ -172,16 +172,16 @@
 	</script>
 
 	<script>
-		function buildTechFilter() {
+		function buildTagFilter() {
 			const menu = document.getElementById("filter-menu");
 
-			const techCount = {};
-			projects.forEach(p => {p.tech.forEach(t => {techCount[t] = (techCount[t] || 0) + 1;});});
+			const tagCount = {};
+			projects.forEach(p => {p.tag.forEach(t => {tagCount[t] = (tagCount[t] || 0) + 1;});});
 
-			menu.innerHTML = Object.keys(techCount).sort().map(t => `
+			menu.innerHTML = Object.keys(tagCount).sort().map(t => `
 				<label>
 					<input type="checkbox" value="${t}">
-					${t} (${techCount[t]})
+					${t} (${tagCount[t]})
 				</label>
 			`).join("");
 		}
@@ -194,7 +194,7 @@
 			title: "Rougelite Game (WIP)",
 			shortDesc: "Card-based casino shoot-em-up roguelite made in Godot Engine.",
 			longDesc: `Tackle enemies both in the battlefield and casino in this wild casino shoot-em-up roguelite. Unlock and deploy gadgets to get an edge over the house, and new weapons to stay alive against the horde outside.`,
-			tech: ["Godot (gdscript)", "Mechanics", "Physics"],
+			tags: ["Game Development", "Godot (gdscript)", "Mechanics", "Physics"],
 			link: "",
 			images: ["images/roguelite/camera.png"]
 		},
@@ -203,7 +203,7 @@
 			title: "Portfolio Website",
 			shortDesc: "Personal portfolio showcasing my work and contact info.",
 			longDesc: `This website was coded using HTML, CSS, and JavaScript.`,
-			tech: ["HTML", "CSS", "JavaScript"],
+			tags: ["Web Development", "HTML", "CSS", "JavaScript"],
 			link: "#",
 			images: ["images/website/homepage.png"]
 		},
@@ -212,10 +212,20 @@
 			title: "League of Legends Random Champion Selector",
 			shortDesc: "Selects a random League of Legends champion to play.",
 			longDesc: `Coded using HTML, TailwindCSS, and JavaScript, champion data is accessed from Riot Games' Data Dragon Public API and applied to pick a random playable champion for your next match.`,
-			tech: ["HTML", "TailwindCSS", "JavaScript", "API"],
+			tags: ["HTML", "TailwindCSS", "JavaScript", "API"],
 			link: "./randomlolchamp",
 			images: ["images/lolchamppicker/pick.png"]
 		},
+		{
+			id: "",
+			title: "Educational Game (binary/hex/dec)",
+			shortDesc: "Educational game to test binary/dec/hex conversion knowledge.",
+			longDesc: `Coded in C# using the Unity Engine.`,
+			tags: ["C#", "Unity"],
+			link: "./uni-project-educational-game",
+			images: [""]
+		},
+
 		];
 
 		const projectContainer = document.querySelector(".project-list");
@@ -243,7 +253,7 @@
 						<span class="close" onclick="closeModal('${p.id}')">&times;</span>
 						<h2>${p.title}</h2>
 						<p>${p.longDesc}</p>
-						<ul>${p.tech.map(t => `<li>${t}</li>`).join("")}</ul>
+						<ul>${p.tags.map(t => `<li>${t}</li>`).join("")}</ul>
 						${projectLinkHTML}
 						${projectImagesHTML}
 					</div>
@@ -317,7 +327,7 @@
 			return index < cardsPerRow;
 		}
 
-		buildTechFilter();
+		buildTagFilter();
 	</script>
 
 	<script>
@@ -341,14 +351,14 @@
 			}
 
 			projects.forEach((p, i) => {
-				const match = selected.every(sel => p.tech.includes(sel));
+				const match = selected.every(sel => p.tags.includes(sel));
 				projectCards[i].style.display = match ? "flex" : "none";
 			});
 
 			updateHiddenCards();
 		}
 
-		window.addEventListener("DOMContentLoaded", buildTechFilter);
+		window.addEventListener("DOMContentLoaded", buildTagFilter);
 	</script>
 </body>
 
