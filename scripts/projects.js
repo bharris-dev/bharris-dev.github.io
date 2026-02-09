@@ -9,15 +9,6 @@ const projects = [
 				images: ["images/roguelite/camera.png"]
 			},
 			{
-				id: "portfolio",
-				title: "Portfolio Website",
-				shortDesc: "Personal portfolio showcasing my work and contact info.",
-				longDesc: `This website was coded using HTML, CSS, and JavaScript.`,
-				tags: ["Web Development", "HTML", "CSS", "JavaScript"],
-				link: "#",
-				images: ["images/website/homepage.png"]
-			},
-			{
 				id: "league random champ selector",
 				title: "League of Legends Random Champion Selector",
 				shortDesc: "Selects a random League of Legends champion to play.",
@@ -27,12 +18,21 @@ const projects = [
 				images: ["images/lolchamppicker/pick.png"]
 			},
 			{
-				id: "ed game",
+				id: "educational game",
 				title: "Educational Game (binary/hex/dec)",
 				shortDesc: "Educational game to test binary/dec/hex conversion knowledge.",
 				longDesc: `Coded in C# using the Unity Engine.`,
 				tags: ["C#", "Unity"],
 				link: "./uni-project-educational-game",
+				images: [""]
+			},
+			{
+				id: "game studio website",
+				title: "Game Studio Website",
+				shortDesc: "",
+				longDesc: ``,
+				tags: ["HTML", "CSS", "JavaScript"],
+				link: "https://biggermenthanmost.github.io/",
 				images: [""]
 			},
 		];
