@@ -1,42 +1,6 @@
-const projects = [
-			{
-				id: "roguelite",
-				title: "Rougelite Game (WIP)",
-				shortDesc: "Card-based casino shoot-em-up roguelite made in Godot Engine.",
-				longDesc: `Tackle enemies both in the battlefield and casino in this wild casino shoot-em-up roguelite. Unlock and deploy gadgets to get an edge over the house, and new weapons to stay alive against the horde outside.`,
-				tags: ["Game Development", "Godot (gdscript)", "Mechanics", "Physics"],
-				link: "",
-				images: ["images/roguelite/camera.png"]
-			},
-			{
-				id: "league random champ selector",
-				title: "League of Legends Random Champion Selector",
-				shortDesc: "Selects a random League of Legends champion to play.",
-				longDesc: `Coded using HTML, TailwindCSS, and JavaScript, champion data is accessed from Riot Games' Data Dragon Public API and applied to pick a random playable champion for your next match.`,
-				tags: ["HTML", "TailwindCSS", "JavaScript", "API"],
-				link: "./randomlolchamp",
-				images: ["images/lolchamppicker/pick.png"]
-			},
-			{
-				id: "educational game",
-				title: "Educational Game (binary/hex/dec)",
-				shortDesc: "Educational game to test binary/dec/hex conversion knowledge.",
-				longDesc: `Coded in C# using the Unity Engine.`,
-				tags: ["C#", "Unity"],
-				link: "./uni-project-educational-game",
-				images: [""]
-			},
-			{
-				id: "game studio website",
-				title: "Game Studio Website",
-				shortDesc: "",
-				longDesc: ``,
-				tags: ["HTML", "CSS", "JavaScript"],
-				link: "https://biggermenthanmost.github.io/",
-				images: [""]
-			},
-		];
-
+fetch('data/projects.json')
+	.then((response) => response.json())
+	.then((projects) => {
 		const projectContainer = document.querySelector(".project-list");
 		const revealBtn = document.getElementById("reveal-btn");
 
@@ -54,12 +18,12 @@ const projects = [
 				: "";
 
 			const cardHTML = `
-				<div class="project-card" id="${p.id}" style="${bgStyle}" onclick="openModal('${p.id}')">
+				<div class="project-card" id="${p.id}" style="${bgStyle}">
 					<p>${p.title}</p>
 				</div>
 				<div id="${p.id}-modal" class="modal">
 					<div class="modal-content">
-						<span class="close" onclick="closeModal('${p.id}')">&times;</span>
+						<span class="close">&times;</span>
 						<h2>${p.title}</h2>
 						<p>${p.longDesc}</p>
 						<ul>${p.tags.map(t => `<li>${t}</li>`).join("")}</ul>
@@ -73,16 +37,32 @@ const projects = [
 
 		const projectCards = document.querySelectorAll(".project-card");
 
+		// Open modal on card click
+		projectCards.forEach(card => {
+			card.addEventListener("click", () => {
+				const modal = document.getElementById(`${card.id}-modal`);
+				if (modal) modal.style.display = "block";
+			});
+		});
+
+		// Close modal on X click
+		document.querySelectorAll(".close").forEach(btn => {
+			btn.addEventListener("click", (e) => {
+				const modal = e.target.closest(".modal");
+				if (modal) modal.style.display = "none";
+			});
+		});
+
 		// * Modal functions *
 		function openModal(id) { document.getElementById(`${id}-modal`).style.display = "block"; }
 		function closeModal(id) { document.getElementById(`${id}-modal`).style.display = "none"; }
-		window.onclick = function(event) {
+		window.addEventListener("click", (event) => {
 			document.querySelectorAll(".modal").forEach(modal => {
-				if (event.target === modal){
+				if (event.target === modal) {
 					modal.style.display = "none";
-				} 
+				}
 			});
-		};
+		});
 
 		// Show/hide extra rows
 		function updateHiddenCards() {
@@ -136,4 +116,6 @@ const projects = [
 			return index < cardsPerRow;
 		}
 
-		buildTagFilter();
+		buildTagFilter(projects);
+		setupFilters(projects, projectCards, updateHiddenCards);
+});

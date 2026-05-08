@@ -1,0 +1,42 @@
+[
+    {
+        "id": "roguelite",
+        "title": "Rougelite Game (WIP)",
+        "shortDesc": "Card-based casino shoot-em-up roguelite made in Godot Engine.",
+        "longDesc": "Tackle enemies both in the battlefield and casino in this wild casino shoot-em-up roguelite. Unlock and deploy gadgets to get an edge over the house, and new weapons to stay alive against the horde outside.",
+        "tags": ["Game Development", "Godot (gdscript)", "Mechanics", "Physics"],
+        "filter_tags": ["Game Dev"],
+        "link": "",
+        "images": ["images/roguelite/camera.png"]
+    },
+    {
+        "id": "league random champ selector",
+        "title": "League of Legends Random Champion Selector",
+        "shortDesc": "Selects a random League of Legends champion to play.",
+        "longDesc": "Coded using HTML, TailwindCSS, and JavaScript, champion data is accessed from Riot Games' Data Dragon Public API and applied to pick a random playable champion for your next match.",
+        "tags": ["HTML", "TailwindCSS", "JavaScript", "API"],
+        "filter_tags": ["Web Dev"],
+        "link": "./randomlolchamp",
+        "images": ["images/lolchamppicker/pick.png"]
+    },
+    {
+        "id": "educational game",
+        "title": "Educational Game (binary/hex/dec)",
+        "shortDesc": "Educational game to test binary/dec/hex conversion knowledge.",
+        "longDesc": "Coded in C# using the Unity Engine.",
+        "tags": ["C#", "Unity"],
+        "filter_tags": ["Game Dev"],
+        "link": "./uni-project-educational-game",
+        "images": [""]
+    },
+    {
+        "id": "game studio website",
+        "title": "Game Studio Website",
+        "shortDesc": "",
+        "longDesc": "",
+        "tags": ["HTML", "CSS", "JavaScript"],
+        "filter_tags": ["Web Dev"],
+        "link": "https://biggermenthanmost.github.io/",
+        "images": [""]
+    }
+]

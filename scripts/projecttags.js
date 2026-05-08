@@ -1,8 +1,8 @@
-function buildTagFilter() {
+function buildTagFilter(projects) {
     const menu = document.getElementById("filter-menu");
 
     const tagCount = {};
-    projects.forEach(p => {p.tags.forEach(t => {tagCount[t] = (tagCount[t] || 0) + 1;});});
+    projects.forEach(p => {p.filter_tags.forEach(t => {tagCount[t] = (tagCount[t] || 0) + 1;});});
 
     menu.innerHTML = Object.keys(tagCount).sort().map(t => `
         <label>

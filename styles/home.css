@@ -1,0 +1,262 @@
+:root {
+  --logo-size: 50px;
+  --timeline-x: calc(var(--logo-size) / 2);
+}
+
+body.home {
+    padding-top: 0;
+}
+
+.hero {
+  height: 100vh;
+  background-image: url('/images/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+  color: white;
+  text-align: center;
+
+  margin: auto 0;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* dark overlay */
+}
+
+.hero-content{
+  display: flex;
+  margin: auto;
+
+  gap: 12rem;
+  align-items: center;
+}
+
+.hero-content .hero-text {
+  position: relative;
+  text-align: left;
+}
+
+.hero-content .hero-text h1{
+    font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.hero-content .hero-text h2{
+    font-size: 5rem;
+    color: var(--style-colour);
+    font-family: 'Poppins', sans-serif;
+}
+
+article{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: min(90%, var(--max-width));
+  /*outline: red solid 1px;*/
+}
+
+article h1{
+  color: whitesmoke;
+  font-family: 'Poppins', sans-serif;
+}
+
+/*
+section{
+  outline: green solid 1px;
+}
+*/
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  background: #111827;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.tab.active {
+  background: var(--style-colour);
+  color: white;
+}
+
+/* Content */
+.tab-content {
+  display: none;
+  margin-top: 20px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* BIG CARD */
+.big-card {
+  background: var(--bg-colour);
+  border: 3px solid var(--style-colour);
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+}
+
+/* Timeline line */
+.big-card::before {
+  content: "";
+  position: absolute;
+  left: calc(20px + var(--timeline-x)); /* padding + center of logo */
+  top: 20px;
+  bottom: 20px;
+  width: 2px;
+  background: #1f2937;
+}
+
+.container h3{
+  color: whitesmoke;
+}
+
+/* ITEM (grid layout) */
+.item {
+  display: grid;
+  grid-template-columns: var(--logo-size) 1fr;
+  column-gap: 16px;
+  position: relative;
+  padding-bottom: 28px;
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+/* Logo */
+.logo {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+/* Right content */
+.right {
+  width: 100%;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.role {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.date {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Lists */
+.container ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.container li {
+  margin-bottom: 6px;
+}
+
+/* Badge */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #1f2937;
+  border-radius: 999px;
+  font-size: 12px;
+  margin-top: 8px;
+  margin-right: 5px;
+}
+
+
+
+@media (max-width: 880px){
+  .hero-content .hero-text {
+    text-align: center;
+  }
+  .hero-content .hero-text h1{
+    font-size: clamp(2rem, 5.45vw, 3rem);
+  }
+  .hero-content .hero-text h2{
+    font-size: clamp(2rem, 10vw, 5rem);
+  }
+  article h1{
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --logo-size: 40px;
+  }
+
+  /* Reduce padding */
+  .big-card {
+    padding: 16px;
+  }
+
+  /* Shift timeline closer */
+  .big-card::before {
+    left: calc(16px + var(--logo-size) / 2);
+  }
+
+  .item::before {
+    left: calc(16px + var(--logo-size) / 2 - 6px);
+  }
+
+  /* Stack header instead of side-by-side */
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .date {
+    font-size: 13px;
+  }
+
+  /* Slightly tighter spacing */
+  .item {
+    padding-bottom: 20px;
+    column-gap: 12px;
+  }
+
+  .container ul {
+    padding-left: 16px;
+  }
+
+}

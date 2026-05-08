@@ -1,28 +1,27 @@
-document.getElementById("filterToggle").addEventListener("click", () => {
-			const menu = document.getElementById("filter-menu");
-			menu.classList.toggle("open");
-		});
+function setupFilters(projects, projectCards, updateHiddenCards) {
+	const filterToggle = document.getElementById("filterToggle");
+    const filterMenu = document.getElementById("filter-menu");
 
-		const filterMenu = document.getElementById("filter-menu");
+    filterToggle.addEventListener("click", () => {
+        filterMenu.classList.toggle("open");
+    });
 
-		// Refilter projects on checkbox change
-		filterMenu.addEventListener("change", applyFilters);
+    filterMenu.addEventListener("change", applyFilters);
 
-		function applyFilters() {
-			const selected = Array.from(filterMenu.querySelectorAll("input:checked")).map(i => i.value);
+    function applyFilters() {
+        const selected = Array.from(filterMenu.querySelectorAll("input:checked")).map(i => i.value);
 
-			if (selected.length === 0) {
-				projectCards.forEach(c => (c.style.display = "flex"));
-				updateHiddenCards();
-				return;
-			}
+        if (selected.length === 0) {
+            projectCards.forEach(c => (c.style.display = "flex"));
+            updateHiddenCards();
+            return;
+        }
 
-			projects.forEach((p, i) => {
-				const match = selected.every(sel => p.tags.includes(sel));
-				projectCards[i].style.display = match ? "flex" : "none";
-			});
+        projects.forEach((p, i) => {
+            const match = selected.every(sel => p.filter_tags.includes(sel));
+            projectCards[i].style.display = match ? "flex" : "none";
+        });
 
-			updateHiddenCards();
-		}
-
-		window.addEventListener("DOMContentLoaded", buildTagFilter);
+        updateHiddenCards();
+    }
+}
