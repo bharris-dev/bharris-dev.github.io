@@ -38,5 +38,15 @@
         "filter_tags": ["Web Dev"],
         "link": "https://biggermenthanmost.github.io/",
         "images": [""]
+    },
+    {
+        "id": "java uni projects",
+        "title": "Animal Kennel Uni Java Project",
+        "shortDesc": "",
+        "longDesc": "",
+        "tags": ["Java"],
+        "filter_tags": ["Software Dev"],
+        "link": "https://github.com/bharris-dev/AnimalPlanetKennel-Uni-Project",
+        "images": [""]
     }
 ]
