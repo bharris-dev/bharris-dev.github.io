@@ -64,11 +64,6 @@ article{
   /*outline: red solid 1px;*/
 }
 
-article h1{
-  color: whitesmoke;
-  font-family: 'Poppins', sans-serif;
-}
-
 /*
 section{
   outline: green solid 1px;
@@ -202,6 +197,10 @@ section{
   margin-right: 5px;
 }
 
+.heading-grid{
+  display: flex;
+  justify-content: space-between;
+}
 
 
 @media (max-width: 880px){
@@ -257,6 +256,10 @@ section{
 
   .container ul {
     padding-left: 16px;
+  }
+
+  .heading-grid h1{
+    font-size: x-large;
   }
 
 }
