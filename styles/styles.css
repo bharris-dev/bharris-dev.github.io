@@ -90,8 +90,11 @@ article h1{
 }
 
 .navbar-logo:hover{
-    background: -webkit-linear-gradient(var(--style-colour), #147a66);
+    background: linear-gradient(var(--style-colour), #147a66);
+    background-clip: text;
     -webkit-background-clip: text;
+
+    color: transparent;
     -webkit-text-fill-color: transparent;
 }
 
