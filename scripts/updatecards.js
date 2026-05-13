@@ -1,5 +1,5 @@
-function setupFilters(projects, projectCards, updateHiddenCards) {
-	const filterToggle = document.getElementById("filterToggle");
+function setupFilters(projects, projectCards) {
+    const filterToggle = document.getElementById("filterToggle");
     const filterMenu = document.getElementById("filter-menu");
 
     filterToggle.addEventListener("click", () => {
@@ -9,19 +9,23 @@ function setupFilters(projects, projectCards, updateHiddenCards) {
     filterMenu.addEventListener("change", applyFilters);
 
     function applyFilters() {
-        const selected = Array.from(filterMenu.querySelectorAll("input:checked")).map(i => i.value);
+        const selected = Array.from(
+            filterMenu.querySelectorAll("input:checked")
+        ).map(i => i.value);
 
         if (selected.length === 0) {
-            projectCards.forEach(c => (c.style.display = "flex"));
-            updateHiddenCards();
+            projectCards.forEach(card => {
+                card.style.display = "";
+            });
             return;
         }
 
-        projects.forEach((p, i) => {
-            const match = selected.every(sel => p.filter_tags.includes(sel));
-            projectCards[i].style.display = match ? "flex" : "none";
-        });
+        projects.forEach((project, i) => {
+            const match = selected.every(tag =>
+                project.filter_tags.includes(tag)
+            );
 
-        updateHiddenCards();
+            projectCards[i].style.display = match ? "" : "none";
+        });
     }
 }
