@@ -55,14 +55,13 @@ article h1{
     margin: 0;
     height: var(--nav-content-height);
     padding: var(--nav-padding-y) 0;
-
     background-color: transparent;
-
-    animation: nav-transparent linear both;
-    animation-timeline: scroll();
-    animation-range: 0px 100px;
-
     font-family: 'Poppins', sans-serif;
+}
+
+.navbar.solid{
+    background-color: var(--default-element-colour);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes nav-transparent {
