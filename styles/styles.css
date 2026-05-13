@@ -16,7 +16,7 @@
     --max-width: 1600px;
     --nav-content-height: 64px;
     --nav-padding-y: 32px;
-    --navbar-total-height: var(--nav-content-height) + (var(--nav-padding-y) * 2);
+    --navbar-total-height: calc(var(--nav-content-height) + (var(--nav-padding-y) * 2));
     --text-colour: whitesmoke;
 }
 
