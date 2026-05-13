@@ -14,9 +14,10 @@ class BaseNav extends HTMLElement{
             navbarMenu.classList.toggle('active');
         });
 
+        const navbar = document.querySelector(".navbar");
+
         window.addEventListener("scroll", () => {
-        document.querySelector(".navbar")
-            .classList.toggle("solid", window.scrollY > 100);
+            navbar.classList.toggle("solid", window.scrollY > 200);
         });
       });
     }
