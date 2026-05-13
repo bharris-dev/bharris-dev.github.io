@@ -17,7 +17,7 @@ class BaseNav extends HTMLElement{
         const navbar = document.querySelector(".navbar");
 
         window.addEventListener("scroll", () => {
-            navbar.classList.toggle("solid", window.scrollY > 200);
+            navbar.classList.toggle("solid", window.scrollY > 100);
         });
       });
     }
