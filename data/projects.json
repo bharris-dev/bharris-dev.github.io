@@ -48,5 +48,15 @@
         "filter_tags": ["Software Dev"],
         "link": "https://github.com/bharris-dev/AnimalPlanetKennel-Uni-Project",
         "images": [""]
+    },
+    {
+        "id": "pokeapi rest",
+        "title": "PokeAPI REST Project",
+        "shortDesc": "",
+        "longDesc": "",
+        "tags": ["Python", "API"],
+        "filter_tags": ["Software Dev"],
+        "link": "https://github.com/bharris-dev/PokeAPI_REST",
+        "images": [""]
     }
 ]
