@@ -41,6 +41,7 @@ p{
 article h1{
   color: whitesmoke;
   font-family: 'Poppins', sans-serif;
+  margin-bottom: 0.5em;
 }
 
 .navbar {
@@ -282,6 +283,10 @@ article h1{
 }
 
 @media (max-width: 880px) {
+    .visible-on-mobile{
+        visibility: visible;
+    }
+
     .navbar-container .navbar-menu{
         display: none;
         flex-direction: column;
