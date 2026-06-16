@@ -7,7 +7,8 @@
         "tags": ["Game Development", "Godot (gdscript)", "Mechanics", "Physics"],
         "filter_tags": ["Game Dev"],
         "link": "",
-        "images": ["images/roguelite/camera.png"]
+        "images": ["images/roguelite/camera.png"],
+        "featured": false
     },
     {
         "id": "league random champ selector",
@@ -17,7 +18,8 @@
         "tags": ["HTML", "TailwindCSS", "JavaScript", "API"],
         "filter_tags": ["Web Dev"],
         "link": "./randomlolchamp",
-        "images": ["images/lolchamppicker/pick.png"]
+        "images": ["images/lolchamppicker/pick.png"],
+        "featured": true
     },
     {
         "id": "educational game",
@@ -27,7 +29,8 @@
         "tags": ["C#", "Unity"],
         "filter_tags": ["Game Dev"],
         "link": "./uni-project-educational-game",
-        "images": [""]
+        "images": [""],
+        "featured": false
     },
     {
         "id": "game studio website",
@@ -37,7 +40,8 @@
         "tags": ["HTML", "CSS", "JavaScript"],
         "filter_tags": ["Web Dev"],
         "link": "https://biggermenthanmost.github.io/",
-        "images": [""]
+        "images": [""],
+        "featured": true
     },
     {
         "id": "java uni projects",
@@ -47,7 +51,8 @@
         "tags": ["Java"],
         "filter_tags": ["Software Dev"],
         "link": "https://github.com/bharris-dev/AnimalPlanetKennel-Uni-Project",
-        "images": [""]
+        "images": [""],
+        "featured": false
     },
     {
         "id": "pokeapi rest",
@@ -57,6 +62,7 @@
         "tags": ["Python", "API"],
         "filter_tags": ["Software Dev"],
         "link": "https://github.com/bharris-dev/PokeAPI_REST",
-        "images": [""]
+        "images": [""],
+        "featured": true
     }
 ]
