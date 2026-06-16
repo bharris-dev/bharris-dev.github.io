@@ -2,68 +2,115 @@ fetch('data/projects.json')
 	.then((response) => response.json())
 	.then((projects) => {
 		const projectContainer = document.querySelector(".project-list");
-		const revealBtn = document.getElementById("reveal-btn");
+		const showFeaturedOnly =projectContainer.dataset.featured === "true";
 
-		// Create project cards
-		projects.forEach(p => {
+		const visibleProjects = showFeaturedOnly ? projects.filter(project => project.featured) : projects;
+
+		visibleProjects.forEach((p) => {
 			const hasImage = p.images && p.images.length > 0;
-			const bgStyle = hasImage ? `background-image: url('${p.images[0]}');` : "";
-			
-			const projectLinkHTML = p.link ? `<p><a href="${p.link}" target="_blank">&#8594; View Project</a></p>` : "";
 
-			const projectImagesHTML = p.images 
-				? `<div class="modal-images">
-					${p.images.map(src => `<img src="${src}" alt="${p.title} screenshot">`).join("")}
-				</div>`
-				: "";
+			// Project card
+			const card = document.createElement("div");
+			card.className = "project-card";
+			card.id = p.id;
 
-			const cardHTML = `
-				<div class="project-card" id="${p.id}" style="${bgStyle}">
-					<p>${p.title}</p>
-				</div>
-				<div id="${p.id}-modal" class="modal">
-					<div class="modal-content">
-						<span class="close">&times;</span>
-						<h2>${p.title}</h2>
-						<p>${p.longDesc}</p>
-						<ul>${p.tags.map(t => `<li>${t}</li>`).join("")}</ul>
-						${projectLinkHTML}
-						${projectImagesHTML}
-					</div>
-				</div>
-			`;
-			projectContainer.insertAdjacentHTML("beforeend", cardHTML);
+			if (hasImage) {
+				card.style.backgroundImage = `url('${p.images[0]}')`;
+			}
+
+			const cardTitle = document.createElement("p");
+			cardTitle.textContent = p.title;
+			card.appendChild(cardTitle);
+
+			// Modal
+			const modal = document.createElement("div");
+			modal.id = `${p.id}-modal`;
+			modal.className = "modal";
+
+			const modalContent = document.createElement("div");
+			modalContent.className = "modal-content";
+
+			const closeBtn = document.createElement("span");
+			closeBtn.className = "close";
+			closeBtn.innerHTML = "&times;";
+
+			const heading = document.createElement("h2");
+			heading.textContent = p.title;
+
+			const description = document.createElement("p");
+			description.textContent = p.longDesc;
+
+			const tagsList = document.createElement("ul");
+
+			p.tags.forEach((tag) => {
+				const li = document.createElement("li");
+				li.textContent = tag;
+				tagsList.appendChild(li);
+			});
+
+			modalContent.appendChild(closeBtn);
+			modalContent.appendChild(heading);
+			modalContent.appendChild(description);
+			modalContent.appendChild(tagsList);
+
+			// Project link
+			if (p.link) {
+				const linkWrapper = document.createElement("p");
+
+				const link = document.createElement("a");
+				link.href = p.link;
+				link.target = "_blank";
+				link.textContent = "→ View Project";
+
+				linkWrapper.appendChild(link);
+				modalContent.appendChild(linkWrapper);
+			}
+
+			// Project images
+			if (p.images && p.images.length > 0) {
+				const imagesContainer = document.createElement("div");
+				imagesContainer.className = "modal-images";
+
+				p.images.forEach((src) => {
+					const img = document.createElement("img");
+					img.src = src;
+					img.alt = `${p.title} screenshot`;
+					imagesContainer.appendChild(img);
+				});
+
+				modalContent.appendChild(imagesContainer);
+			}
+
+			modal.appendChild(modalContent);
+
+			// Add elements to page
+			projectContainer.appendChild(card);
+			projectContainer.appendChild(modal);
+
+			// Open modal
+			card.addEventListener("click", () => {
+				modal.style.display = "block";
+			});
+
+			// Close modal
+			closeBtn.addEventListener("click", () => {
+				modal.style.display = "none";
+			});
 		});
 
 		const projectCards = document.querySelectorAll(".project-card");
 
-		// Open modal on card click
-		projectCards.forEach(card => {
-			card.addEventListener("click", () => {
-				const modal = document.getElementById(`${card.id}-modal`);
-				if (modal) modal.style.display = "block";
-			});
-		});
-
-		// Close modal on X click
-		document.querySelectorAll(".close").forEach(btn => {
-			btn.addEventListener("click", (e) => {
-				const modal = e.target.closest(".modal");
-				if (modal) modal.style.display = "none";
-			});
-		});
-
-		// * Modal functions *
-		function openModal(id) { document.getElementById(`${id}-modal`).style.display = "block"; }
-		function closeModal(id) { document.getElementById(`${id}-modal`).style.display = "none"; }
+		// Close modal when clicking outside content
 		window.addEventListener("click", (event) => {
-			document.querySelectorAll(".modal").forEach(modal => {
+			document.querySelectorAll(".modal").forEach((modal) => {
 				if (event.target === modal) {
 					modal.style.display = "none";
 				}
 			});
 		});
 
-		buildTagFilter(projects);
-		setupFilters(projects, projectCards);
-});
+		if (!showFeaturedOnly) {
+			buildTagFilter(visibleProjects);
+			setupFilters(visibleProjects, projectCards);
+		}
+	});
