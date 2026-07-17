@@ -338,3 +338,38 @@ article h1{
     transition: none !important;
   }
 }
+
+@media(prefers-reduced-motion: no-preference){
+    @view-transition{
+        navigation: auto;
+    }
+
+    ::view-transition-group(page-content){
+        animation-duration: 2s;
+        animation-timing-function: ease;
+    }
+
+    ::view-transition-old(page-content){
+        animation-name: slide-out;
+    }
+
+    ::view-transition-new(page-content){
+        animation-name: slide-in;
+    }
+
+    #main-content{
+        view-transition-name: page-content;
+    }
+
+    @keyframes slide-out{
+        to{
+            transform: translateX(-100vw);
+        }
+    }
+
+    @keyframes slide-in{
+        from{
+            transform: translateX(100vw);
+        }
+    }
+}
