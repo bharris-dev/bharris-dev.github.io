@@ -13,7 +13,7 @@
 
     <div class="flex flex-wrap justify-center gap-3 mb-6">
         <label class="text-lg font-medium py-2">Filter by Champion Class:</label>
-            <select id="role-filter" class="bg-gray-600 text-white px-3 py-2 rounded-lg">
+            <select id="class-filter" class="bg-gray-600 text-white px-3 py-2 rounded-lg">
                 <option value="all">All</option>
                 <option value="Assassin">Assassin</option>
                 <option value="Fighter">Fighter</option>
@@ -70,17 +70,18 @@
         }
 
         function pickRandomChampion() {
-            const selectedClass = filterByClass;
+            const selectedClass = filterByClass.value;
             let filteredChamps = champions;
 
-            if (selectedClass ==! "all"){
-                filteredChamps.filter(c => c.tags.includes(selectedClass));
+            if (selectedClass !== "all"){
+                filteredChamps = filteredChamps.filter(c => c.tags.includes(selectedClass));
             }
 
             if (!filteredChamps.length){
                 return
             }
 
+            console.log(selectedClass);
             // Picks random champion
             const random = filteredChamps[Math.floor(Math.random() * filteredChamps.length)];
             champName.textContent = random.name;
