@@ -8,6 +8,16 @@ class BaseNav extends HTMLElement{
 
         const navbarToggle = this.querySelector('.navbar-toggle');
         const navbarMenu = this.querySelector('.navbar-menu');
+        
+        const isOnMobile = isMobile();
+
+        let navScroll = 0;
+
+        if(isOnMobile){
+            navScroll = 20;
+        } else{
+            navScroll = 100;
+        }
 
         navbarToggle.addEventListener('click', () => {
             navbarToggle.classList.toggle('active');
@@ -17,7 +27,7 @@ class BaseNav extends HTMLElement{
         const navbar = document.querySelector(".navbar");
 
         window.addEventListener("scroll", () => {
-            navbar.classList.toggle("solid", window.scrollY > 100);
+            navbar.classList.toggle("solid", window.scrollY > navScroll);
         });
       });
     }
@@ -36,3 +46,7 @@ class BaseFooter extends HTMLElement{
 
 customElements.define('base-nav', BaseNav)
 customElements.define('base-footer', BaseFooter)
+
+function isMobile(){
+    return /Android|iPhone/.test(navigator.userAgent);
+}

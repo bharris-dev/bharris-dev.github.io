@@ -65,15 +65,6 @@ article h1{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes nav-transparent {
-    from {
-        background-color: transparent;
-    }
-    to {
-        background-color: var(--default-element-colour);
-    }
-}
-
 .navbar-container{
     display: flex;
     align-items: center;
