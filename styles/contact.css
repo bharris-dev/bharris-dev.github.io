@@ -1,5 +1,9 @@
 /* Forms */
-form { max-width:420px; margin:50px auto; }
+form { 
+  max-width: 90vw;
+  width: 420px;
+  margin:50px auto;
+}
 
 .form-input {
   color:white;
