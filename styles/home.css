@@ -7,6 +7,7 @@
 
 body.home {
     padding-top: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 .hero {
@@ -50,13 +51,11 @@ body.home {
 
 .hero-content .hero-text h1{
     font-size: 3rem;
-    font-family: 'Poppins', sans-serif;
 }
 
 .hero-content .hero-text h2{
     font-size: 5rem;
     color: var(--style-colour);
-    font-family: 'Poppins', sans-serif;
 }
 
 .hero .avatar-wrapper{
@@ -236,6 +235,17 @@ section{
   font-size: 12px;
   margin-top: 8px;
   margin-right: 5px;
+  background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 100%);
+}
+
+.badge:hover{
+  background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 100%);
+  background: linear-gradient(90deg, rgba(155, 42, 42, 1) 0%, rgba(199, 195, 87, 1) 100%);
+}
+
+.badge a{
+  color: whitesmoke;
+  text-decoration: none;
 }
 
 .heading-grid{

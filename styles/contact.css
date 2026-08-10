@@ -24,9 +24,9 @@ form {
 .form-input:focus { border:2px solid #b35252; }
 
 textarea {
-  height: 10rem;
   line-height: 150%;
-  resize:vertical;
+  field-sizing: content;
+  resize: none;
 }
 
 [type="submit"] {
