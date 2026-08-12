@@ -7,7 +7,6 @@
 
 body.home {
     padding-top: 0;
-    font-family: 'Poppins', sans-serif;
 }
 
 .hero {
@@ -233,23 +232,20 @@ section{
 /* Badge */
 .badge {
   display: inline-block;
-  padding: 4px 10px;
   background: #1f2937;
   border-radius: 999px;
   font-size: 12px;
   margin-top: 8px;
   margin-right: 5px;
   background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 100%);
+  color: whitesmoke;
+  text-decoration: none;
+  padding: 4px 10px;
 }
 
 .badge:hover{
   background: #9b2a2a;
   background: linear-gradient(90deg, rgba(155, 42, 42, 1) 0%, rgba(199, 195, 87, 1) 100%);
-}
-
-.badge a{
-  color: whitesmoke;
-  text-decoration: none;
 }
 
 .heading-grid{
